@@ -26,8 +26,6 @@ DfpwmForge is a command-line application that converts MP3 audio files into DFPW
 
 ### Basic Conversion
 
-Provide the path to an MP3 file:
-
 **Windows (PowerShell):**
 ```powershell
 .\dfpwm.exe file.mp3
@@ -38,11 +36,9 @@ Provide the path to an MP3 file:
 ./dfpwm file.mp3
 ```
 
-The converted file is automatically saved alongside the input file, using the same filename with the `.dfpwm` extension.
+The converted file is automatically saved alongside the input file, using the same filename with the `.mp3` extension.
 
-### Specify an Output Path
-
-Use `-o` to specify a custom output path.
+Use `-o` to specify a custom output name.
 
 **Windows (PowerShell):**
 ```powershell
