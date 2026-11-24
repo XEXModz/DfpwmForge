@@ -6,10 +6,15 @@ DfpwmForge is a native C++ application built to convert MP3 audio into DFPWM for
 
 While designed with CC:Tweaked compatibility as its primary goal, DfpwmForge can also be used to just generally generate `.dfpwm` audio files for other applications that support the format.
 
-## Development Notes
+## Development Status
 
-- **WAV support:** WAV-to-DFPWM conversion is currently in development and is planned for a future update.
-- **Sample rate:** DfpwmForge does not currently resample audio to 48 kHz. CC:Tweaked speakers play audio at 48 kHz, so MP3 files with other sample rates may play at an incorrect speed or pitch. For the best playback results, use 48 kHz MP3 files until sample rate conversion is implemented.
+DfpwmForge is currently under active development. The initial v1.0.0 pre-release provides working MP3-to-DFPWM conversion for Windows and Linux.
+
+**Current limitations:**
+- WAV-to-DFPWM conversion is planned for a future update.
+- Audio is not currently resampled to 48 kHz. MP3 files with different sample rates may play at an incorrect speed or pitch when used with CC:Tweaked speakers.
+
+These features are planned for future updates.
 
 ## Features
 
