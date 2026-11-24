@@ -44,7 +44,7 @@ DfpwmForge is a command-line application that converts MP3 audio files into DFPW
 ./dfpwm file.mp3
 ```
 
-The converted file is automatically saved alongside the input file, using the same filename with the `.mp3` extension.
+The converted file is automatically saved alongside the input file, using the same filename with the `.dfpwm` extension.
 
 Use `-o` to specify a custom output name.
 
