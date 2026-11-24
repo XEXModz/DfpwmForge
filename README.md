@@ -30,12 +30,12 @@ Provide the path to an MP3 file:
 
 **Windows (PowerShell):**
 ```powershell
-.\dfpwm.exe "input.mp3"
+.\dfpwm.exe file.mp3
 ```
 
 **Linux:**
 ```bash
-./dfpwm "input.mp3"
+./dfpwm file.mp3
 ```
 
 The converted file is automatically saved alongside the input file, using the same filename with the `.dfpwm` extension.
@@ -46,44 +46,32 @@ Use `-o` to specify a custom output path.
 
 **Windows (PowerShell):**
 ```powershell
-.\dfpwm.exe "input.mp3" -o "output"
+.\dfpwm.exe input.mp3 -o fileName
 ```
 
 **Linux:**
 ```bash
-./dfpwm "input.mp3" -o "output"
+./dfpwm input.mp3 -o fileName
 ```
 
 DfpwmForge automatically appends `.dfpwm` if the specified output filename doesn't already have that extension.
-
-You can also provide the extension yourself:
-
-**Windows (PowerShell):**
-```powershell
-.\dfpwm.exe "input.mp3" -o "output.dfpwm"
-```
-
-**Linux:**
-```bash
-./dfpwm "input.mp3" -o "output.dfpwm"
-```
 
 You can specify a path in another directory as well:
 
 **Windows (PowerShell):**
 ```powershell
-.\dfpwm.exe "input.mp3" -o "audio\converted"
+.\dfpwm.exe input.mp3 -o "$HOME\Desktop\convertedfile.dfpwm"
 ```
 
 **Linux:**
 ```bash
-./dfpwm "input.mp3" -o "audio/converted"
+./dfpwm input.mp3 -o ~/Dekstop/covertedfile.dfpwm
 ```
 
 ### Command Syntax
 
 ```text
-dfpwm <input.mp3> [-o <output_path>]
+dfpwm <input_path.mp3> -o <output_path>
 ```
 
 | Argument | Description |
