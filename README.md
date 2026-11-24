@@ -65,7 +65,7 @@ You can specify a path in another directory as well:
 
 **Linux:**
 ```bash
-./dfpwm input.mp3 -o ~/Dekstop/covertedfile.dfpwm
+./dfpwm input.mp3 -o ~/Dekstop/convertedfile.dfpwm
 ```
 
 ### Command Syntax
