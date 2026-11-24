@@ -213,4 +213,6 @@ DfpwmForge/
 
 ## License
 
-A license will be selected before the first public release.
+DfpwmForge is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+Third-party components retain their respective licenses. `minimp3` is released under CC0-1.0.
