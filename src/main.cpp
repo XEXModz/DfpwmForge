@@ -34,9 +34,10 @@ int main(int argc, char* argv[]) {
     }
 
     AudioData audio;
+    std::string errorMessage;
 
-    if (!decodeMp3(inputFile, audio)) {
-        std::cerr << "Failed to decode MP3.\n";
+    if (!decodeMp3(inputFile, audio, errorMessage)) {
+        std::cerr << "Error: " << errorMessage << '\n';
         return 1;
     }
 
@@ -46,8 +47,8 @@ int main(int argc, char* argv[]) {
     }
 
     if (!resampleAudio(audio, 48000)) {
-        std::cerr << "Audio resampling failed!\n";
-        return 1;
+      std::cerr << "Audio resampling failed!\n";
+      return 1;
     }
 
     std::vector<int8_t> samples8Bit;
@@ -67,10 +68,17 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    outputFile.write( reinterpret_cast<const char*>(encodedAudio.data()), static_cast<std::streamsize>(encodedAudio.size()) );
+    outputFile.write(reinterpret_cast<const char*>(encodedAudio.data()), static_cast<std::streamsize>(encodedAudio.size()));
 
     if (!outputFile) {
         std::cerr << "Failed to write DFPWM data!\n";
+        return 1;
+    }
+
+    outputFile.close();
+
+    if (!outputFile) {
+        std::cerr << "Failed to close output file: " << outputFileName << '\n';
         return 1;
     }
 
