@@ -45,6 +45,11 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    if (!resampleAudio(audio, 48000)) {
+        std::cerr << "Audio resampling failed!\n";
+        return 1;
+    }
+
     std::vector<int8_t> samples8Bit;
 
     if (!convertTo8Bit(audio, samples8Bit)) {
