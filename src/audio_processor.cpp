@@ -1,5 +1,7 @@
 #include "audio_processor.h"
 #include <utility>
+#include <cmath>
+#include <algorithm>
 
 bool convertToMono(AudioData& audio) {
 
