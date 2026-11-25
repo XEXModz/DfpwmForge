@@ -2,67 +2,70 @@
 
 **A lightweight, cross-platform MP3-to-DFPWM converter designed for CC:Tweaked.**
 
-DfpwmForge is a native C++ application built to convert MP3 audio into DFPWM format for use with [CC:Tweaked](https://tweaked.cc/). It handles the audio processing needed to prepare files for playback through CC:Tweaked's speaker peripherals, including stereo-to-mono conversion and 8-bit audio conversion.
+DfpwmForge is a native C++17 command-line application that converts MP3 audio into standard DFPWM format for playback through CC:Tweaked speaker peripherals.
 
-While designed with CC:Tweaked compatibility as its primary goal, DfpwmForge can also be used to just generally generate `.dfpwm` audio files for other applications that support the format.
+## Project status
 
-**Current limitations:**
-- WAV-to-DFPWM conversion is planned for a future update.
+DfpwmForge is under active development.
 
-## Features
+**Next planned feature:** WAV-to-DFPWM conversion.
 
-- MP3 to DFPWM conversion for CC:Tweaked
-- Audio processing tailored to CC:Tweaked's DFPWM playback requirements
-- Stereo-to-mono audio conversion
-- 16-bit to 8-bit audio conversion
-- Audio decoding using [minimp3](https://github.com/lieff/minimp3)
-- Lightweight, native C++17 implementation
 
 ## Usage
 
-DfpwmForge is a command-line application that converts MP3 audio files into DFPWM format.
+DfpwmForge is a command-line application.
 
-### Basic Conversion
+### Basic conversion
 
 **Windows (PowerShell):**
+
 ```powershell
-.\dfpwm.exe file.mp3
+.\dfpwm.exe input.mp3
 ```
 
 **Linux:**
+
 ```bash
-./dfpwm file.mp3
+./dfpwm input.mp3
 ```
 
-The converted file is automatically saved alongside the input file, using the same filename with the `.dfpwm` extension.
+The converted file is automatically saved alongside the input file using the same filename with a `.dfpwm` extension.
 
-Use `-o` to specify a custom output name.
+### Custom output path
+
+Use `-o` to specify a custom output filename or path.
 
 **Windows (PowerShell):**
+
 ```powershell
-.\dfpwm.exe input.mp3 -o fileName
+.\dfpwm.exe input.mp3 -o "$HOME\Desktop\converted.dfpwm"
 ```
 
 **Linux:**
+
 ```bash
-./dfpwm input.mp3 -o fileName
+./dfpwm input.mp3 -o "$HOME/Desktop/converted.dfpwm"
 ```
 
-DfpwmForge automatically appends `.dfpwm` if the specified output filename doesn't already have that extension.
+DfpwmForge automatically appends `.dfpwm` when the specified output filename does not already have that extension.
 
-You can specify a path in another directory as well:
+### Paths containing spaces
 
-**Windows (PowerShell):**
-```powershell
-.\dfpwm.exe input.mp3 -o "$HOME\Desktop\convertedfile.dfpwm"
-```
+Quote paths containing spaces.
 
 **Linux:**
+
 ```bash
-./dfpwm input.mp3 -o ~/Dekstop/convertedfile.dfpwm
+./dfpwm "$HOME/Desktop/Music/my audio.mp3"
 ```
 
-### Command Syntax
+**Windows (PowerShell):**
+
+```powershell
+.\dfpwm.exe "$HOME\Desktop\Music\my audio.mp3"
+```
+
+### Command syntax
 
 ```text
 dfpwm <input_path.mp3> -o <output_path>
@@ -70,52 +73,56 @@ dfpwm <input_path.mp3> -o <output_path>
 
 | Argument | Description |
 |---|---|
-| `input.mp3` | Path to the MP3 file to convert |
-| `-o` | Optional flag to specify the output path |
-| `output_path` | Custom output filename or path. The `.dfpwm` extension is added automatically when missing |
+| `input_path.mp3` | Path to the input MP3 file |
+| `-o` | Optional flag for specifying a custom output path |
+| `output_path` | Custom output filename or path |
 
-### Conversion Output
+## Conversion output
 
-After a successful conversion, DfpwmForge displays the input file, output file, and number of encoded bytes.
+DfpwmForge displays the input filename, audio information, conversion progress, output path, and encoded file size.
 
-### Example
+Example:
 
 ```text
-Conversion successful!
 Input: sample.mp3
-Output: sample.dfpwm
-Encoded bytes: 1653750
+[1/4] Decoding MP3       [100%]
+
+Audio: 05:00 | 44100 Hz | Stereo | 16-bit PCM
+
+[2/4] Converting to Mono [100%]
+[3/4] Resampling Audio  [100%]
+[4/4] Encoding DFPWM    [100%]
+
+Conversion successful!
+Output: /path/to/sample.dfpwm
+Size: 1,800,000 bytes
 ```
-## Project Status
 
-DfpwmForge is under active development.
+Progress percentages reflect actual processing progress.
 
-**Planned:**
-- WAV format conversion support
-
-## Building from Source
+## Building from source
 
 ### Requirements
 
-- CMake 3.20 or newer
-- A C++17-compatible compiler
-- Git
+- CMake 3.20 or newer.
+- A C++17-compatible compiler.
+- Git.
 
 | Platform | Compiler |
 |---|---|
 | Windows | Microsoft Visual C++ (MSVC) |
 | Linux | GCC or Clang |
 
-### Clone the Repository
+### Clone the repository
 
 ```bash
-git clone https://github.com/XEXModz/DfpwmForge 
+git clone https://github.com/XEXModz/DfpwmForge
 cd DfpwmForge
 ```
 
 ### Windows
 
-Install [Visual Studio Build Tools](https://learn.microsoft.com/en-us/cpp/overview/acquire-msvc?view=msvc-170) with the C++ build tools and a Windows SDK.
+Install [Visual Studio Build Tools](https://learn.microsoft.com/en-us/cpp/overview/acquire-msvc?view=msvc-170) with the C++ build tools and Windows SDK.
 
 Configure and build:
 
@@ -124,70 +131,64 @@ cmake -S . -B build
 cmake --build build --config Release
 ```
 
-The executable will be generated at:
-
-```text
-build/bin/Debug/dfpwm.exe
-```
-
 ### Linux
-
-Install the required packages using your distribution's package manager.
 
 **Fedora:**
 
 ```bash
-sudo dnf install cmake gcc-c++ git
+sudo dnf install cmake gcc-c++
 ```
 
 **Debian / Ubuntu:**
 
 ```bash
-sudo apt install cmake g++ git
+sudo apt install cmake g++
 ```
 
 Configure and build:
 
 ```bash
 cmake -S . -B build
-cmake --build build --config Release
+cmake --build build
 ```
 
-The executable will be generated at:
+The Linux executable is generated at:
 
 ```text
 build/bin/dfpwm
 ```
 
-
-
-## VS Code Development
+### VS Code development
 
 DfpwmForge includes shared VS Code configuration for Windows and Linux.
 
-1. Install [Visual Studio Code](https://code.visualstudio.com/).
+1. Install Visual Studio Code.
 2. Install the C/C++ and CMake Tools extensions.
 3. Clone and open the DfpwmForge project folder.
-4. Allow CMake Tools to configure the project. Select **Let CMake decide** when prompted.
-5. Press **F5** to build and run.
+4. Allow CMake Tools to configure the project.
+5. Press F5 to build and run.
 
-
-
-## Project Structure
+## Project structure
 
 ```text
 DfpwmForge/
-├── .vscode/        # Shared VS Code configuration
-├── external/       # Third-party dependencies
-├── include/        # Project header files
-├── src/            # C++ source files
-├── CMakeLists.txt  # CMake build configuration
+├── .vscode/              # Shared VS Code configuration
+├── external/             # Third-party dependencies
+├── include/
+│   ├── audio_data.h      # Shared audio data structure
+│   ├── audio_processor.h
+│   ├── dfpwm_encoder.h
+│   └── mp3_decoder.h
+├── src/
+│   ├── audio_processor.cpp
+│   ├── dfpwm_encoder.cpp
+│   ├── main.cpp
+│   └── mp3_decoder.cpp
+├── CMakeLists.txt
 ├── .gitignore
+├── LICENSE
 └── README.md
 ```
-
-
-
 ## License
 
 DfpwmForge is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
