@@ -4,3 +4,4 @@
 
 bool convertToMono(AudioData& audio);
 bool convertTo8Bit(const AudioData& audio, std::vector<int8_t>& output);
+bool resampleAudio(AudioData& audio, int targetSampleRate);
