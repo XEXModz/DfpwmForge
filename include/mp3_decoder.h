@@ -8,4 +8,4 @@ struct AudioData {
     int sampleRate;
     int channels;
 };
-bool decodeMp3(const std::string& filename, AudioData& audio);
+bool decodeMp3(const std::string& filename, AudioData& audio, std::string& errorMessage);
