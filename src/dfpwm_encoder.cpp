@@ -1,4 +1,5 @@
 #include "dfpwm_encoder.h"
+using namespace std;
 
 namespace {
     constexpr int PRECISION = 10;
@@ -44,12 +45,14 @@ int DfpwmEncoder::predict(bool currentBit) {
     return charge;
 }
 
-std::vector<uint8_t> DfpwmEncoder::encode(const std::vector<int8_t>& samples) {
-    
-    std::vector<uint8_t> output;
+vector<uint8_t> DfpwmEncoder::encode(const vector<int8_t>& samples, void (*progressCallback)(int)) {
+
+    vector<uint8_t> output;
 
     // Each output byte stores 8 audio samples.
     output.reserve((samples.size() + 7) / 8);
+
+    int lastReportedPercentage = -1;
 
     for (size_t i = 0; i < samples.size(); i += 8) {
         uint8_t thisByte = 0;
@@ -69,6 +72,17 @@ std::vector<uint8_t> DfpwmEncoder::encode(const std::vector<int8_t>& samples) {
         }
 
         output.push_back(thisByte);
+
+        if (progressCallback) {
+            const size_t remainingSamples = samples.size() - i;
+            const size_t processedSamples = i + (remainingSamples < 8 ? remainingSamples : 8);
+            const int percentage = static_cast<int>((static_cast<double>(processedSamples) / samples.size()) * 100.0);
+
+            if (percentage != lastReportedPercentage) {
+                progressCallback(percentage);
+                lastReportedPercentage = percentage;
+            }
+        }
     }
 
     return output;
