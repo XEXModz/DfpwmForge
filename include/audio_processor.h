@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <vector>
 
-#include "mp3_decoder.h"
+#include "audio_data.h"
 
 bool convertToMono(AudioData& audio, void (*progressCallback)(int) = nullptr);
 bool convertTo8Bit(const AudioData& audio, std::vector<int8_t>& output);
