@@ -5,7 +5,7 @@
 
 class DfpwmEncoder {
 public:
-    std::vector<uint8_t> encode(const std::vector<int8_t>& samples);
+    std::vector<uint8_t> encode(const std::vector<int8_t>& samples, void (*progressCallback)(int) = nullptr);
 
 private:
     int predict(bool currentBit);
