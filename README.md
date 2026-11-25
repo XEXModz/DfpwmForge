@@ -6,14 +6,8 @@ DfpwmForge is a native C++ application built to convert MP3 audio into DFPWM for
 
 While designed with CC:Tweaked compatibility as its primary goal, DfpwmForge can also be used to just generally generate `.dfpwm` audio files for other applications that support the format.
 
-## Development Status
-
-DfpwmForge is currently under active development. The initial v1.0.0 pre-release provides working MP3-to-DFPWM conversion for Windows and Linux.
-
 **Current limitations:**
 - WAV-to-DFPWM conversion is planned for a future update.
-
-These features are planned for future updates.
 
 ## Features
 
@@ -23,9 +17,6 @@ These features are planned for future updates.
 - 16-bit to 8-bit audio conversion
 - Audio decoding using [minimp3](https://github.com/lieff/minimp3)
 - Lightweight, native C++17 implementation
-
-
-
 
 ## Usage
 
@@ -95,17 +86,12 @@ Input: sample.mp3
 Output: sample.dfpwm
 Encoded bytes: 1653750
 ```
-
-
-
 ## Project Status
 
 DfpwmForge is under active development.
 
 **Planned:**
 - WAV format conversion support
-
-
 
 ## Building from Source
 
