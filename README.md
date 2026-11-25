@@ -124,7 +124,7 @@ DfpwmForge is under active development.
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/XEXModz/DfpwmForge.git 
+git clone https://github.com/XEXModz/DfpwmForge 
 cd DfpwmForge
 ```
 
