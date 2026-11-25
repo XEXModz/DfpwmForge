@@ -12,7 +12,6 @@ DfpwmForge is currently under active development. The initial v1.0.0 pre-release
 
 **Current limitations:**
 - WAV-to-DFPWM conversion is planned for a future update.
-- Audio is not currently resampled to 48 kHz. MP3 files with different sample rates may play at an incorrect speed or pitch when used with CC:Tweaked speakers.
 
 These features are planned for future updates.
 
